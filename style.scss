@@ -1,0 +1,175 @@
+@charset "utf-8";
+
+$breakpoint: 768px;
+$mainColor: #16f;
+
+@mixin mediaTablet {
+  @media screen and (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin mediaPc {
+  @media  screen and (min-width: $breakpoint + 1px){
+    @content;
+
+  }
+}
+
+@mixin inputStyle {
+    font-size: 20px;
+    padding: 7px;
+}
+
+*,*::before,*::after{
+    box-sizing:border-box;
+}
+
+body {
+  color: #333;
+}
+
+a{
+  color: #333;
+  text-decoration: none;
+}
+
+main  {
+  max-width: 1000px;
+  width: 100%;
+  margin: 50px auto;
+  padding: 20px;
+  h1{
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 0.5em;
+  }
+
+  .inputs {
+    background-color: #eee;
+    padding: 20px;
+    margin-bottom: 50px;
+
+      dl {
+        font-size: 18px;
+        dt {
+          font-weight: bold;
+          margin-bottom: .5em;
+          &:not(:first-of-type) {
+            margin-top: 50px;
+          }
+        }
+        dd {
+          ul {
+            display: flex;
+            align-items: center;
+          li {
+            &:not(:last-of-type) {
+              margin-right: 30px;
+            }
+          }
+        }
+          input {
+            @include inputStyle;
+            &[type="number"] {
+              min-width: 100px;
+            }
+          }
+        }
+      }
+
+    button {
+      display: block;
+      color: #fff;
+      font-weight: bold;
+      background-color: $mainColor;
+      box-shadow: 0 3px darken($mainColor, 30%);
+      font-size: 18px;
+      border: 0;
+      outline: none;
+      padding: 10px 15px;
+      margin: 50px auto 0 ;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      @include mediaPc {
+        &:hover {
+          transform: translateY(3px);
+          box-shadow: 0 0;
+        }
+      }
+    }
+  }
+
+  .passwordList {
+    counter-reset: passwordNumber 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    li {
+      padding: 20px;
+      position: relative;
+      padding-left: 2.5em;
+      &:not(:first-of-type) {
+      margin-top: 10px;
+      }
+      &::before {
+        counter-increment: passwordNumber 1;
+        content: counter(passwordNumber);
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+      }
+      list-style: none;
+      input {
+        @include inputStyle
+      }
+      .copyButton {
+        padding: 10px;
+        color:$mainColor;
+        border: 2px solid $mainColor;
+        font-weight: bold;
+        border-radius: 5px;
+        margin-left: 10px;
+        cursor: pointer;
+        @include mediaPc {
+          transition: .3s;
+          &:hover {
+            opacity: .5;
+          }
+        }
+      }
+    }
+  }
+  @include mediaTablet {
+    margin: 0 auto;
+
+    .inputs {
+      dl {
+        dt {
+          line-height: 1.4;
+        }
+        dd {
+          ul {
+            display: block;
+            li {
+              list-style: none;
+              &:not(:last-of-type) {
+                margin-right: 0;
+                margin-bottom: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .passwordList {
+      li {
+        input {
+          width: 120px;
+        }
+      }
+    }
+  }
+}

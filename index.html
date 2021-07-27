@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>パスワードジェネレーター</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reseter.css/1.1.2/reseter.min.css">
+  <link rel="stylesheet" href="style.min.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>パスワード生成ツール</h1>
+
+    <form name="inputs" class="inputs">
+      <dl>
+        <dt>パスワードを構成する文字</dt>
+        <dd>
+          <ul>
+            <li>
+              <input type="checkbox" id="includeNumber" checked>
+              <label for="includeNumber">数字</label>
+            </li>
+
+            <li>
+              <input type="checkbox" id="includeEnglishLowercase">
+              <label for="includeEnglishLowercase">英語の小文字</label>
+            </li>
+            
+            <li>
+              <input type="checkbox" id="includeEnglishUppercase">
+              <label for="includeEnglishUppercase">英語の大文字</label>
+            </li>
+
+          </ul>
+        </dd>
+
+        <dt>文字数</dt>
+        <dd>
+          <ul>
+            <li>
+              <input type="radio" name="stringLength" id="six" value="6" checked>
+              <label for="six">6文字</label>
+            </li>
+
+            <li>
+              <input type="radio" name="stringLength" id="eight" value="8">
+              <label for="eight">8文字</label>
+            </li>
+
+            <li>
+              <input type="radio" name="stringLength" id="twelve" value="12">
+              <label for="twelve">12文字</label>
+            </li>
+
+            <li>
+              <input type="radio" name="stringLength" id="custom" value="custom">
+              <label for="custom">カスタム</label>
+              <input type="number" id="customLength" min="1" max="100" placeholder="1~100">
+            </li>
+
+          </ul>
+        </dd>
+
+        <dt>生成するパスワードの個数</dt>
+        <dd>
+          <ul>
+            <li>
+              <input type="radio" name="numberOfPasswords" id="tenPasswords" value="10" checked>
+              <label for="tenPasswords">10個</label>
+            </li>
+
+            <li>
+              <input type="radio" name="numberOfPasswords" id="thirtyPasswords" value="30" >
+              <label for="thirtyPasswords">30個</label>
+            </li>
+
+            <li>
+              <input type="radio" name="numberOfPasswords" id="customNumberOfPassword" value= "custom" >
+              <label for="customNumberOfPassword">カスタム</label>
+              <input type="number" id="customNumberOfPasswordInput" min="1" max="100" placeholder="1~100">
+            </li>
+
+          </ul>
+        </dd>
+
+        <dt>除外する文字(半角カンマ区切りで入力できます。)</dt>
+        <dd>
+          <input type="text" id ="excludeTexts">
+        </dd>
+      </dl>
+      <button id="generateButton">パスワードを生成する</button>
+    </form>
+    <ul class="passwordList" id="passwordList"></ul>
+  </main>
+</body>
+</html>
